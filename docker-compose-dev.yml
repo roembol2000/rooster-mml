@@ -1,0 +1,24 @@
+version: "3.5"
+
+services:
+  rooster-mml-client:
+    image: rooster-mml-client
+    build: ./client/
+    ports:
+      - 3000:80
+    networks:
+      - rooster-mml
+
+  rooster-mml-server:
+    image: rooster-mml-server
+    build: ./server/
+    environment:
+      - PORT=5000
+      - BASE_URL=https://mmlrooster.msa.nl/dagroosters/
+      - NODE_ENV=development
+    networks:
+      - rooster-mml
+
+networks:
+  rooster-mml:
+    driver: bridge

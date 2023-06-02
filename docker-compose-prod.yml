@@ -1,0 +1,20 @@
+version: "3.5"
+
+services:
+  rooster-mml-client:
+    image: roembol/rooster-mml-client
+    build:
+      context: ./client
+    restart: unless-stopped
+    ports:
+      - 80:80
+
+  rooster-mml-server:
+    image: roembol/rooster-mml-server
+    build:
+      context: ./server
+    restart: unless-stopped
+    environment:
+      - BASE_URL=https://mmlrooster.msa.nl/dagroosters/
+      - NODE_ENV=production
+      - PORT=80
