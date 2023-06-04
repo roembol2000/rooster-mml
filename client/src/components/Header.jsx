@@ -1,5 +1,6 @@
 import Fuse from "fuse.js";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as Account } from "../assets/account.svg";
 // import { ReactComponent as StarUnfilled } from "../assets/star_fill0.svg";
@@ -13,6 +14,8 @@ const Header = ({
   setSearchInput,
   setCredentials,
 }) => {
+  const navigate = useNavigate();
+
   const fuse = new Fuse(entries, {
     keys: ["name"],
   });
@@ -22,7 +25,8 @@ const Header = ({
   // };
 
   const handleAccountButton = () => {
-    setCredentials({ username: "", password: "", isValid: false });
+    setCredentials({ username: "", password: "", authenticated: false });
+    navigate("/login");
   };
 
   const handleOnChange = (event) => {

@@ -20,7 +20,7 @@ const Main = ({ credentials, setCredentials, entries }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header
-        entries={entries.entries}
+        entries={entries}
         suggestions={suggestions}
         setSuggestions={setSuggestions}
         setSchedule={setSchedule}

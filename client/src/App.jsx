@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import Main from "./views/Main";
 import Login from "./views/Login";
 
@@ -6,23 +8,37 @@ const App = () => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
-    isValid: false,
+    authenticated: false,
   });
 
   const [entries, setEntries] = useState([]);
 
   return (
-    <div>
-      {credentials.isValid ? (
-        <Main
-          credentials={credentials}
-          setCredentials={setCredentials}
-          entries={entries}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="login" />} />
+        <Route
+          path="/login"
+          element={
+            <Login setCredentials={setCredentials} setEntries={setEntries} />
+          }
         />
-      ) : (
-        <Login setCredentials={setCredentials} setEntries={setEntries} />
-      )}
-    </div>
+        <Route
+          path="/schedule"
+          element={
+            credentials.authenticated ? (
+              <Main
+                credentials={credentials}
+                setCredentials={setCredentials}
+                entries={entries}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
