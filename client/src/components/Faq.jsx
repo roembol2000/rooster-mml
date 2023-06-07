@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 const FaqEntry = ({ question, answer }) => {
   return (
@@ -26,7 +26,7 @@ const Faq = () => {
         <hr />
         <FaqEntry
           question="Hoe werkt dit?"
-          answer="Je kunt de volledige broncode van deze website vinden op {src_link}."
+          answer="Je kunt de volledige broncode van deze website vinden op GitHub, zie de footer."
         />
       </div>
     </div>
@@ -36,6 +36,6 @@ const Faq = () => {
 FaqEntry.propTypes = {
   question: PropTypes.string,
   answer: PropTypes.string,
-}
+};
 
 export default Faq;

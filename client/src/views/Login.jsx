@@ -6,6 +6,7 @@ import { useAnalytics } from "../contexts/analyticsContext";
 
 import Faq from "../components/Faq";
 import Form from "../components/Login/Form";
+import Footer from "../components/Footer";
 
 const Login = ({ setCredentials, setEntries }) => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const Login = ({ setCredentials, setEntries }) => {
       <div className="w-full text-center text-white bg-mml-red-300">
         Deze website is niet officieel.
       </div>
-      <div className="flex flex-col py-8 mx-4 lg:mx-8 lg:flex-row lg:max-w-7xl">
+      <div className="flex flex-col pt-8 pb-4 mx-4 lg:mx-8 lg:flex-row lg:max-w-7xl">
         <div className="flex-1">
           <div className="mb-4">
             <h1 className="text-2xl font-semibold">Rooster</h1>
@@ -62,6 +63,7 @@ const Login = ({ setCredentials, setEntries }) => {
           <Faq />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
