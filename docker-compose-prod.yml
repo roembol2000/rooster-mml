@@ -3,8 +3,16 @@ version: "3.5"
 services:
   rooster-mml-client:
     image: roembol/rooster-mml-client
+    env_file:
+      - .env
     build:
       context: ./client
+      args:
+        - VITE_HOSTNAME=${VITE_HOSTNAME}
+        - VITE_ANALYTICS_ENABLED=${VITE_ANALYTICS_ENABLED}
+        - VITE_ANALYTICS_PROVIDER=${VITE_ANALYTICS_PROVIDER}
+        - VITE_ANALYTICS_ENDPOINT=${VITE_ANALYTICS_ENDPOINT}
+        - VITE_ANALYTICS_WEBSITE_ID=${VITE_ANALYTICS_WEBSITE_ID}
     restart: unless-stopped
     ports:
       - 80:80

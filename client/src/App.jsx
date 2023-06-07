@@ -1,8 +1,16 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import Main from "./views/Main";
 import Login from "./views/Login";
+import Analytics from "./utils/analytics";
+import usePageTracking from "./utils/usePageTracking";
+import AnalyticsContext from "./contexts/analyticsContext";
 
 const App = () => {
   const [credentials, setCredentials] = useState({
@@ -13,8 +21,15 @@ const App = () => {
 
   const [entries, setEntries] = useState([]);
 
+  const analytics = new Analytics(import.meta.env.VITE_ANALYTICS_PROVIDER, {
+    endpoint: import.meta.env.VITE_ANALYTICS_ENDPOINT,
+    website: import.meta.env.VITE_ANALYTICS_WEBSITE_ID,
+  });
+
+  usePageTracking(analytics);
+
   return (
-    <BrowserRouter>
+    <AnalyticsContext.Provider value={analytics}>
       <Routes>
         <Route path="/" element={<Navigate to="login" />} />
         <Route
@@ -38,8 +53,16 @@ const App = () => {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </AnalyticsContext.Provider>
   );
 };
 
-export default App;
+const RouterWrapper = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+};
+
+export default RouterWrapper;
