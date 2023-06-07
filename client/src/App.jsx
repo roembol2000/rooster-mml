@@ -30,29 +30,31 @@ const App = () => {
 
   return (
     <AnalyticsContext.Provider value={analytics}>
-      <Routes>
-        <Route path="/" element={<Navigate to="login" />} />
-        <Route
-          path="/login"
-          element={
-            <Login setCredentials={setCredentials} setEntries={setEntries} />
-          }
-        />
-        <Route
-          path="/schedule"
-          element={
-            credentials.authenticated ? (
-              <Main
-                credentials={credentials}
-                setCredentials={setCredentials}
-                entries={entries}
-              />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-      </Routes>
+      <div className="min-h-screen dark:bg-neutral-900">
+        <Routes>
+          <Route path="/" element={<Navigate to="login" />} />
+          <Route
+            path="/login"
+            element={
+              <Login setCredentials={setCredentials} setEntries={setEntries} />
+            }
+          />
+          <Route
+            path="/schedule"
+            element={
+              credentials.authenticated ? (
+                <Main
+                  credentials={credentials}
+                  setCredentials={setCredentials}
+                  entries={entries}
+                />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+        </Routes>
+      </div>
     </AnalyticsContext.Provider>
   );
 };

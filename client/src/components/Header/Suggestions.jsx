@@ -15,16 +15,14 @@ const Suggestions = ({
   };
 
   return (
-    <div className="border-t border-neutral-300">
-      {suggestions.map(
-        ({ item: suggestion }) => (
-          <SuggestionsEntry
-            key={suggestion.name}
-            name={suggestion.name}
-            clickHandler={() => clickHandler(suggestion)}
-          />
-        )
-      )}
+    <div className="border-t border-neutral-300 dark:border-neutral-700">
+      {suggestions.map(({ item: suggestion }) => (
+        <SuggestionsEntry
+          key={suggestion.name}
+          name={suggestion.name}
+          clickHandler={() => clickHandler(suggestion)}
+        />
+      ))}
     </div>
   );
 };

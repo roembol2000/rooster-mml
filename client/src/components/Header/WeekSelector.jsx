@@ -27,7 +27,7 @@ const addWeekNumber = (weekNumber, amount) => {
 
 const WeekSelector = ({ weekNumber, setWeekNumber }) => {
   return (
-    <div className="border-t border-b md:flex md:justify-center border-neutral-300">
+    <div className="border-t border-b md:flex md:justify-center border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800">
       <div className="flex items-center h-16 px-4 place-content-between md:w-[32rem]">
         <div
           onClick={() => setWeekNumber(addWeekNumber(weekNumber, -1))}

@@ -51,7 +51,7 @@ const Login = ({ setCredentials, setEntries }) => {
       </div>
       <div className="flex flex-col pt-8 pb-4 mx-4 lg:mx-8 lg:flex-row lg:max-w-7xl">
         <div className="flex-1">
-          <div className="mb-4">
+          <div className="mb-4 dark:text-white">
             <h1 className="text-2xl font-semibold">Rooster</h1>
             <p>Log in met je NETWERK-inloggegevens</p>
           </div>

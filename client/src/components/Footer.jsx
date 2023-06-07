@@ -3,7 +3,7 @@ const Footer = () => {
     <div className="flex flex-col items-center justify-center h-12">
       <a
         href="https://github.com/roembol2000/rooster-mml"
-        className="underline"
+        className="underline dark:text-neutral-300"
       >
         Broncode op GitHub
       </a>
