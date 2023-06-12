@@ -10,7 +10,11 @@ The official MML schedule page is quite frustrating to use, especially on mobile
 
 ## How to use
 
-Simply go to https://rooster.roembol.nl/ (or your own instance), log in with your credentials and search for your schedule.
+Simply go to the url of your self-hosted instance, log in with your credentials and search for your schedule.
+
+## Where did rooster.roembol.nl go?
+
+Because of security concerns at the school IT department, rooster.roembol.nl had to be shut down. If you want to continue using the site, please host your own private instance using the instructions below.
 
 ## How to install
 
@@ -21,6 +25,10 @@ Simply go to https://rooster.roembol.nl/ (or your own instance), log in with you
 - Docker Compose
 
 ### Installation
+
+> | ❗ Note |
+> |---------|
+> You are not allowed to share your instance with other people. Everyone who wants to use the app must run their own instance. Please consider password-protecting your instance, this README will be updated soon to provide instructions on that.
 
 - Clone the repo to your server
 - Create a `.env` file in the project root
