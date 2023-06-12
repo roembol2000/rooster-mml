@@ -26,9 +26,9 @@ Because of security concerns at the school IT department, rooster.roembol.nl had
 
 ### Installation
 
-> | ❗ Note |
-> |---------|
-> You are not allowed to share your instance with other people. Everyone who wants to use the app must run their own instance. Please consider password-protecting your instance, this README will be updated soon to provide instructions on that.
+| ❗ Note |
+|:--------|
+You are not allowed to share your instance with other people. Everyone who wants to use the app must run their own instance. Please consider password-protecting your instance, this README will be updated soon to provide instructions on that.
 
 - Clone the repo to your server
 - Create a `.env` file in the project root
