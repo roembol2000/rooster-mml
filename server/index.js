@@ -22,5 +22,5 @@ router.use("/entries", EntriesRoute);
 router.use("/schedule", ScheduleRoute);
 
 app.listen(port, () => {
-  logger.info(`App is running on port ${port}.`);
+  logger.info(`App is running on port ${port}. Log level is ${logger.level}.`);
 });
