@@ -4,8 +4,6 @@ import weekOfYear from "dayjs/plugin/weekOfYear";
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 
-import { useAnalytics } from "../contexts/analyticsContext";
-
 import Header from "../components/Header";
 import Suggestions from "../components/Header/Suggestions";
 import Schedule from "../components/Schedule";
@@ -15,7 +13,6 @@ dayjs.extend(weekOfYear);
 const currentWeekNumber = dayjs().week();
 
 const Main = ({ credentials, setCredentials, entries }) => {
-  const analytics = useAnalytics();
   const location = useLocation();
 
   const [suggestions, setSuggestions] = useState([]);
@@ -25,9 +22,7 @@ const Main = ({ credentials, setCredentials, entries }) => {
 
   useEffect(() => {
     if (!Object.keys(schedule).length) return;
-
-    analytics.trackEvent(location, { name: "User loaded schedule" });
-  }, [schedule, analytics, location]);
+  }, [schedule, location]);
 
   return (
     <div className="flex flex-col min-h-screen">

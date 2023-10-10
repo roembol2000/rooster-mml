@@ -2,27 +2,15 @@ version: "3.5"
 
 services:
   rooster-mml-client:
-    image: roembol/rooster-mml-client
-    env_file:
-      - .env
-    build:
-      context: ./client
-      args:
-        - VITE_HOSTNAME=${VITE_HOSTNAME}
-        - VITE_ANALYTICS_ENABLED=${VITE_ANALYTICS_ENABLED}
-        - VITE_ANALYTICS_PROVIDER=${VITE_ANALYTICS_PROVIDER}
-        - VITE_ANALYTICS_ENDPOINT=${VITE_ANALYTICS_ENDPOINT}
-        - VITE_ANALYTICS_WEBSITE_ID=${VITE_ANALYTICS_WEBSITE_ID}
+    image: "ghcr.io/roembol2000/rooster-mml-client:latest"
     restart: unless-stopped
     ports:
-      - 80:80
+      - 12100:80
 
   rooster-mml-server:
-    image: roembol/rooster-mml-server
-    build:
-      context: ./server
+    image: "ghcr.io/roembol2000/rooster-mml-server:latest"
     restart: unless-stopped
     environment:
       - BASE_URL=https://mmlrooster.msa.nl/dagroosters/
-      - NODE_ENV=production
+      - NODE_ENV=development
       - PORT=80

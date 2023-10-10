@@ -27,17 +27,17 @@ Because of security concerns at the school IT department, rooster.roembol.nl had
 ### Installation
 
 | ❗ Note |
-|:--------|
+| :------ |
+
 You are not allowed to share your instance with other people. Everyone who wants to use the app must run their own instance. Please consider password-protecting your instance, this README will be updated soon to provide instructions on that.
 
 - Clone the repo to your server
 - Create a `.env` file in the project root
   - You can find an example configuration in `.env.example`
   - Set `VITE_HOSTNAME` to where you will be hosting the app
-  - If you want to enable analytics, add `VITE_ANALYTICS_ENABLED=yes`. You can see how to configure your analytics provider in the `.env.example` file. Note that only Umami Analytics is supported right now.
 - Run `make build-prod`
 - Run `make run-prod` or `make run-prod-daemon` to start the app
-- Don't forget to use a reverse-proxy like Traefik to enable HTTPS
+- Don't forget to use a reverse-proxy like Caddy to enable HTTPS and add a login
 
 ## Development setup
 
