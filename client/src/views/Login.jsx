@@ -2,7 +2,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { getEntries } from "../utils/api";
-import { useAnalytics } from "../contexts/analyticsContext";
 
 import Faq from "../components/Faq";
 import Form from "../components/Login/Form";
@@ -10,7 +9,6 @@ import Footer from "../components/Footer";
 
 const Login = ({ setCredentials, setEntries }) => {
   const navigate = useNavigate();
-  const analytics = useAnalytics();
 
   const [status, setStatus] = useState({ ok: true, message: "" });
 
@@ -32,7 +30,6 @@ const Login = ({ setCredentials, setEntries }) => {
       const entries = await getEntries(credentials);
       setEntries(entries.entries);
       setCredentials({ ...credentials, authenticated: true });
-      analytics.trackEvent(location, { name: "User logged in" });
       navigate("/schedule");
     } catch (err) {
       if (err.name == "AuthenticationError") {
