@@ -19,29 +19,31 @@ const App = () => {
   const [entries, setEntries] = useState([]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="login" />} />
-      <Route
-        path="/login"
-        element={
-          <Login setCredentials={setCredentials} setEntries={setEntries} />
-        }
-      />
-      <Route
-        path="/schedule"
-        element={
-          credentials.authenticated ? (
-            <Main
-              credentials={credentials}
-              setCredentials={setCredentials}
-              entries={entries}
-            />
-          ) : (
-            <Navigate to="/login" />
-          )
-        }
-      />
-    </Routes>
+    <div className="min-h-screen dark:bg-neutral-800">
+      <Routes>
+        <Route path="/" element={<Navigate to="login" />} />
+        <Route
+          path="/login"
+          element={
+            <Login setCredentials={setCredentials} setEntries={setEntries} />
+          }
+        />
+        <Route
+          path="/schedule"
+          element={
+            credentials.authenticated ? (
+              <Main
+                credentials={credentials}
+                setCredentials={setCredentials}
+                entries={entries}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+      </Routes>
+    </div>
   );
 };
 

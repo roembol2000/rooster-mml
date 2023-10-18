@@ -47,9 +47,9 @@ const Header = ({
   };
 
   return (
-    <div className="md:flex md:justify-center">
+    <div className="md:flex md:justify-center dark:bg-neutral-800">
       <div className="flex items-center h-16 md:w-[32rem]">
-        <div className="flex flex-1 h-12 ml-4 border-2 rounded-md outline-none touch-none border-neutral-300 focus-within:border-mml-blue-100">
+        <div className="flex flex-1 h-12 ml-4 border-2 rounded-md outline-none touch-none border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 focus-within:border-mml-blue-100">
           <form onSubmit={handleSubmit} className="flex-1">
             <input
               type="text"
@@ -57,7 +57,7 @@ const Header = ({
               size="1"
               value={searchInput}
               onChange={handleOnChange}
-              className="w-full h-full pl-2 rounded-md outline-none"
+              className="w-full h-full pl-2 rounded-md outline-none dark:text-white dark:bg-neutral-800"
             />
           </form>
           {/* <div

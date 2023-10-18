@@ -62,7 +62,7 @@ const Main = ({ credentials, setCredentials, entries }) => {
           </div>
         ) : (
           <div className="flex justify-center">
-            <div className="max-w-sm p-4 mx-4 mt-8 space-y-2 text-center border-2 rounded-md border-neutral-300">
+            <div className="max-w-sm p-4 mx-4 mt-8 space-y-2 text-center border-2 rounded-md border-neutral-300 dark:border-neutral-700 dark:text-white">
               <h1 className="text-2xl font-semibold">Rooster</h1>
               <p>
                 Vul je leerlingnummer, klas, afkorting of lokaal in aan de

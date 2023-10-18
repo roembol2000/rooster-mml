@@ -19,6 +19,16 @@ div > font[size="3"]:first-of-type {
   display: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  div {
+    color: #aaa;
+  }
+
+  td > font[size="3"] {
+    color: #ddd;
+  }
+}
+
 @media (min-width: 768px) {
   div > table:first-of-type {
     margin-top: 0rem;
