@@ -19,7 +19,7 @@ const App = () => {
   const [entries, setEntries] = useState([]);
 
   return (
-    <div className="min-h-screen dark:bg-neutral-900">
+    <div className="min-h-screen dark:bg-neutral-800">
       <Routes>
         <Route path="/" element={<Navigate to="login" />} />
         <Route
