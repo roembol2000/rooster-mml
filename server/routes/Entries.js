@@ -1,6 +1,7 @@
 const express = require("express");
 const { query, validationResult } = require("express-validator");
 const getEntries = require("../requests/getEntries");
+const logger = require("../util/logger");
 
 const router = express.Router();
 
@@ -29,6 +30,8 @@ router.get(
         return res
           .status(401)
           .json({ error: err.name, message: "User is unauthorized!" });
+
+      logger.error(err);
 
       return res.status(500).json({
         error: "InternalServerError",
