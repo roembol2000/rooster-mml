@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const logger = require("./util/logger");
@@ -23,13 +24,16 @@ const router = express.Router();
 const port = process.env.PORT || 80;
 
 app.use(express.json());
+app.use(cookieParser());
 
 const EntriesRoute = require("./routes/Entries");
 const ScheduleRoute = require("./routes/Schedule");
+const LoginRoute = require("./routes/Login");
 
 app.use("/api", router);
 router.use("/entries", EntriesRoute);
 router.use("/schedule", ScheduleRoute);
+router.use("/login", LoginRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client"));

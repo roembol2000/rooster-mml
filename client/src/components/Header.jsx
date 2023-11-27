@@ -12,7 +12,7 @@ const Header = ({
   setSchedule,
   searchInput,
   setSearchInput,
-  setCredentials,
+  setNetwerkCredentials,
 }) => {
   const navigate = useNavigate();
 
@@ -25,8 +25,8 @@ const Header = ({
   // };
 
   const handleAccountButton = () => {
-    setCredentials({ username: "", password: "", authenticated: false });
-    navigate("/login");
+    setNetwerkCredentials({ username: "", password: "", authenticated: false });
+    navigate("/netwerklogin");
   };
 
   const handleOnChange = (event) => {
@@ -85,7 +85,7 @@ Header.propTypes = {
   setSchedule: PropTypes.func,
   searchInput: PropTypes.string,
   setSearchInput: PropTypes.func,
-  setCredentials: PropTypes.func,
+  setNetwerkCredentials: PropTypes.func,
 };
 
 export default Header;

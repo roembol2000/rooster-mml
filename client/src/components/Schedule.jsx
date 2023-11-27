@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import root from "react-shadow";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { getSchedule } from "../utils/api";
 import style from "../utils/style.js";
 
-const Schedule = ({ credentials, schedule, weekNumber }) => {
+const Schedule = ({ netwerkCredentials, schedule, weekNumber }) => {
+  const navigate = useNavigate();
+
+  const [, , removeCookie] = useCookies();
+
   const [scheduleHtml, setScheduleHtml] = useState("");
 
   useEffect(() => {
-    getSchedule(credentials, schedule, weekNumber)
+    getSchedule(netwerkCredentials, schedule, weekNumber)
       .then((schedule) => {
         setScheduleHtml(schedule.schedule);
       })
@@ -20,8 +26,12 @@ const Schedule = ({ credentials, schedule, weekNumber }) => {
         if (err.name == "NotFoundError") {
           setScheduleHtml("<div>Helaas bestaat dit rooster niet.</div>");
         }
+        if (err.name == "ForbiddenError") {
+          removeCookie("token");
+          navigate("/login");
+        }
       });
-  }, [schedule, credentials, weekNumber]);
+  }, [schedule, netwerkCredentials, weekNumber]);
 
   return (
     <root.div className="flex justify-center w-full mt-2 overflow-auto ">
@@ -32,7 +42,7 @@ const Schedule = ({ credentials, schedule, weekNumber }) => {
 };
 
 Schedule.propTypes = {
-  credentials: PropTypes.object,
+  netwerkCredentials: PropTypes.object,
   schedule: PropTypes.object,
   weekNumber: PropTypes.number,
 };

@@ -1,6 +1,8 @@
 const express = require("express");
 const { query, validationResult } = require("express-validator");
+
 const getSchedule = require("../requests/getSchedule");
+const auth = require("../middlewares/auth");
 const logger = require("../util/logger");
 
 const router = express.Router();
@@ -8,6 +10,7 @@ const router = express.Router();
 router.get(
   "/",
   [
+    auth,
     query("netwerk_username").notEmpty(),
     query("netwerk_password").notEmpty(),
     query("week").isInt(),
@@ -20,7 +23,7 @@ router.get(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const credentials = {
+    const netwerkCredentials = {
       username: req.query.netwerk_username,
       password: req.query.netwerk_password,
     };
@@ -28,7 +31,7 @@ router.get(
     const { week, type, id } = req.query;
 
     try {
-      const schedule = await getSchedule(credentials, week, type, id);
+      const schedule = await getSchedule(netwerkCredentials, week, type, id);
 
       res.json({ schedule });
     } catch (err) {

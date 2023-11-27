@@ -1,16 +1,23 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { getEntries } from "../utils/api";
 
 import Faq from "../components/Faq";
 import Form from "../components/Login/Form";
-import Footer from "../components/Footer";
+import { login } from "../utils/api";
 
-const Login = ({ setCredentials, setEntries }) => {
+const Login = () => {
   const navigate = useNavigate();
 
+  const [cookies, setCookie] = useCookies(["token"]);
+
   const [status, setStatus] = useState({ ok: true, message: "" });
+
+  useEffect(() => {
+    if (cookies.token) {
+      navigate("/schedule");
+    }
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -23,13 +30,14 @@ const Login = ({ setCredentials, setEntries }) => {
     if (!credentials.username || !credentials.password)
       return setStatus({
         ok: false,
-        message: "Vul een gebruikersnaam of wachtwoord in.",
+        message: "Vul een gebruikersnaam of wachwoord in.",
       });
 
     try {
-      const entries = await getEntries(credentials);
-      setEntries(entries.entries);
-      setCredentials({ ...credentials, authenticated: true });
+      const response = await login(credentials);
+      console.log(response.token);
+      // 7d
+      setCookie("token", response.token, { maxAge: 604800 });
       navigate("/schedule");
     } catch (err) {
       if (err.name == "AuthenticationError") {
@@ -42,32 +50,21 @@ const Login = ({ setCredentials, setEntries }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-full text-center text-white bg-mml-red-300">
-        Deze website is niet officieel.
-      </div>
-      <div className="flex flex-col pt-8 pb-4 mx-4 lg:mx-8 lg:flex-row lg:max-w-7xl">
-        <div className="flex-1">
-          <div className="mb-4 dark:text-white">
-            <h1 className="text-2xl font-semibold">Rooster</h1>
-            <p>Log in met je NETWERK-inloggegevens</p>
-          </div>
-          <div className="mb-8">
-            <Form handleLogin={handleLogin} status={status} />
-          </div>
+    <div className="flex flex-col pt-8 pb-4 mx-4 lg:mx-8 lg:flex-row lg:max-w-7xl">
+      <div className="flex-1">
+        <div className="mb-4 dark:text-white">
+          <h1 className="text-2xl font-semibold">Rooster</h1>
+          <p>Log in met je NETWERK-inloggegevens</p>
         </div>
-        <div className="flex-1">
-          <Faq />
+        <div className="mb-8">
+          <Form handleLogin={handleLogin} status={status} />
         </div>
       </div>
-      <Footer />
+      <div className="flex-1">
+        <Faq />
+      </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  setCredentials: PropTypes.func,
-  setEntries: PropTypes.func,
 };
 
 export default Login;

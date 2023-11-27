@@ -5,16 +5,21 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "migrate": "node migrate.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cheerio": "^1.0.0-rc.12",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "httpntlm": "^1.8.12",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
     "winston": "^3.9.0"
   },
   "devDependencies": {

@@ -1,26 +1,32 @@
 const express = require("express");
 const { query, validationResult } = require("express-validator");
+
 const getEntries = require("../requests/getEntries");
+const auth = require("../middlewares/auth");
 const logger = require("../util/logger");
 
 const router = express.Router();
 
 router.get(
   "/",
-  [query("netwerk_username").notEmpty(), query("netwerk_password").notEmpty()],
+  [
+    auth,
+    query("netwerk_username").notEmpty(),
+    query("netwerk_password").notEmpty(),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const credentials = {
+    const netwerkCredentials = {
       username: req.query.netwerk_username,
       password: req.query.netwerk_password,
     };
 
     try {
-      const entries = await getEntries(credentials);
+      const entries = await getEntries(netwerkCredentials);
 
       const pinned = { message: ":)" };
 

@@ -6,13 +6,13 @@ const { cleanUpHTML } = require("../util/scraping");
 
 const ntlmGet = util.promisify(httpntlm.get);
 
-const getEntries = async (credentials, week, type, id) => {
+const getEntries = async (netwerkCredentials, week, type, id) => {
   const paddedId = id.padStart(5, "0");
   const urlPath = `${week}/${type}/${type}${paddedId}.htm`;
   const options = {
     url: url.resolve(process.env.BASE_URL, urlPath),
-    username: credentials.username,
-    password: credentials.password,
+    username: netwerkCredentials.username,
+    password: netwerkCredentials.password,
   };
 
   const response = await ntlmGet(options);

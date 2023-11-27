@@ -12,7 +12,7 @@ import WeekSelector from "../components/Header/WeekSelector";
 dayjs.extend(weekOfYear);
 const currentWeekNumber = dayjs().week();
 
-const Main = ({ credentials, setCredentials, entries }) => {
+const Main = ({ netwerkCredentials, setNetwerkCredentials, entries }) => {
   const location = useLocation();
 
   const [suggestions, setSuggestions] = useState([]);
@@ -33,7 +33,7 @@ const Main = ({ credentials, setCredentials, entries }) => {
         setSchedule={setSchedule}
         searchInput={searchInput}
         setSearchInput={setSearchInput}
-        setCredentials={setCredentials}
+        setNetwerkCredentials={setNetwerkCredentials}
       />
 
       <div>
@@ -55,7 +55,7 @@ const Main = ({ credentials, setCredentials, entries }) => {
               setWeekNumber={setWeekNumber}
             />
             <Schedule
-              credentials={credentials}
+              netwerkCredentials={netwerkCredentials}
               schedule={schedule}
               weekNumber={weekNumber}
             />
@@ -77,8 +77,8 @@ const Main = ({ credentials, setCredentials, entries }) => {
 };
 
 Main.propTypes = {
-  credentials: PropTypes.object,
-  setCredentials: PropTypes.func,
+  netwerkCredentials: PropTypes.object,
+  setNetwerkCredentials: PropTypes.func,
   entries: PropTypes.array,
 };
 

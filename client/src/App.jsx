@@ -8,9 +8,10 @@ import {
 
 import Main from "./views/Main";
 import Login from "./views/Login";
+import NetwerkLogin from "./views/NetwerkLogin";
 
 const App = () => {
-  const [credentials, setCredentials] = useState({
+  const [netwerkCredentials, setNetwerkCredentials] = useState({
     username: "",
     password: "",
     authenticated: false,
@@ -21,27 +22,31 @@ const App = () => {
   return (
     <div className="min-h-screen dark:bg-neutral-800">
       <Routes>
-        <Route path="/" element={<Navigate to="login" />} />
+        <Route path="/" element={<Navigate to="netwerklogin" />} />
         <Route
-          path="/login"
+          path="/netwerklogin"
           element={
-            <Login setCredentials={setCredentials} setEntries={setEntries} />
+            <NetwerkLogin
+              setNetwerkCredentials={setNetwerkCredentials}
+              setEntries={setEntries}
+            />
           }
         />
         <Route
           path="/schedule"
           element={
-            credentials.authenticated ? (
+            netwerkCredentials.authenticated ? (
               <Main
-                credentials={credentials}
-                setCredentials={setCredentials}
+                netwerkCredentials={netwerkCredentials}
+                setNetwerkCredentials={setNetwerkCredentials}
                 entries={entries}
               />
             ) : (
-              <Navigate to="/login" />
+              <Navigate to="/netwerklogin" />
             )
           }
         />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

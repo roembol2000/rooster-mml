@@ -4,11 +4,11 @@ const httpntlm = require("httpntlm");
 
 const ntlmGet = util.promisify(httpntlm.get);
 
-const getEntries = async (credentials) => {
+const getEntries = async (netwerkCredentials) => {
   const options = {
     url: url.resolve(process.env.BASE_URL, "frames/navbar.htm"),
-    username: credentials.username,
-    password: credentials.password,
+    username: netwerkCredentials.username,
+    password: netwerkCredentials.password,
   };
 
   const response = await ntlmGet(options);
