@@ -38,7 +38,9 @@ const getEntries = async (netwerkCredentials) => {
   const entries = entryTypes
     .map(([entryType, entryTypeShort]) => {
       const regex = new RegExp(`${entryType} = (.*);`);
-      const array = JSON.parse(body.match(regex)[1]);
+      const match = body.match(regex);
+      if (!match) return [];
+      const array = JSON.parse(match[1]);
       return array.map((entry, index) => ({
         name: entry,
         type: entryTypeShort,
