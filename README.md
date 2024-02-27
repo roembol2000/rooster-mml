@@ -28,16 +28,25 @@ Because of security concerns at the school IT department, rooster.roembol.nl had
 
 | ❗ Note |
 | :------ |
+| You are not allowed to share your instance with other people. Everyone who wants to use the app must run their own instance. Please consider password-protecting your instance. |
 
-You are not allowed to share your instance with other people. Everyone who wants to use the app must run their own instance. Please consider password-protecting your instance, this README will be updated soon to provide instructions on that.
-
-- Clone the repo to your server
-- Create a `.env` file in the project root
-  - You can find an example configuration in `.env.example`
-  - Set `VITE_HOSTNAME` to where you will be hosting the app
-- Run `make build-prod`
-- Run `make run-prod` or `make run-prod-daemon` to start the app
+- Example Docker Compose file below
 - Don't forget to use a reverse-proxy like Caddy to enable HTTPS and add a login
+
+```
+version: "3.5"
+
+services:
+    rooster-mml:
+        image: "ghcr.io/roembol2000/rooster-mml:v1.2.2"
+        ports:
+          - 127.0.0.1:12100:12100
+        restart: unless-stopped
+        environment:
+          - BASE_URL=https://mmlrooster.msa.nl/dagroosters/
+          - NODE_ENV=production
+          - PORT=12100
+```
 
 ## Development setup
 
