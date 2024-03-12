@@ -8,9 +8,8 @@ const ntlmGet = util.promisify(httpntlm.get);
 
 const getEntries = async (credentials, week, type, id) => {
   const paddedWeek = week.padStart(2, "0");
-  console.log(paddedWeek);
   const paddedId = id.padStart(5, "0");
-  const urlPath = `${paddedWeek}/${type}/${type}${paddedId}.htm`;
+  const urlPath = `${type}/${paddedWeek}/${type}${paddedId}.htm`;
   const options = {
     url: url.resolve(process.env.BASE_URL, urlPath),
     username: credentials.username,
